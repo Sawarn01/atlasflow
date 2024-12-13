@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><a href="index.html"><img class="logoimg" src="/logo.svg" alt=""></a></div>
+        <div class="menu-item " onclick="navigate('index.html')">Home</div>
+        <div class="menu-item " onclick="navigate('invoices.html')">Invoices</div>
+        <div class="menu-item " onclick="navigate('clients.html')">Clients</div>
+        <div class="menu-item " onclick="navigate('projects.html')">Projects</div>
+        <div class="menu-item active" onclick="navigate('team.html')">Team</div>
+        <div class="menu-item" onclick="navigate('messages.html')">Messages</div>
+        <div class="menu-item" onclick="navigate('settings.html')">Settings</div>
+        <div class="menu-item" onclick="navigate('help.html')">Help</div>
+    </div>
+
+    <div class="main-content">
+        <div class="invoice-table">
+            <h2>Team</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Position</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TM01</td>
+                        <td>Ankesh</td>
+                        <td>ankesh@dashflow.ai</td>
+                        <td>+91 9304860958</td>
+                        <td>CEO</td>
+                    </tr>
+                    <tr>
+                        <td>TM02</td>
+                        <td>Sashwat</td>
+                        <td>sawarn@raktacure.ai</td>
+                        <td>+91 8863816642</td>
+                        <td>COO</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

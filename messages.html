@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><a href="index.html"><img class="logoimg" src="/logo.svg" alt=""></a></div>
+        <div class="menu-item" onclick="navigate('index.html')">Home</div>
+        <div class="menu-item " onclick="navigate('invoices.html')">Invoices</div>
+        <div class="menu-item " onclick="navigate('clients.html')">Clients</div>
+        <div class="menu-item " onclick="navigate('projects.html')">Projects</div>
+        <div class="menu-item " onclick="navigate('team.html')">Team</div>
+        <div class="menu-item active" onclick="navigate('messages.html')">Messages</div>
+        <div class="menu-item" onclick="navigate('settings.html')">Settings</div>
+        <div class="menu-item" onclick="navigate('help.html')">Help</div>
+    </div>
+
+    <div class="main-content">
+        <div class="top-bar">
+            <h1>Messages</h1>
+        </div>
+
+        <div class="chat-window">
+            <div class="message received">
+                <p>Hi! How are you?</p>
+                <span>10:15 AM</span>
+            </div>
+            <div class="message sent">
+                <p>I’m doing great, thanks! What about you?</p>
+                <span>10:16 AM</span>
+            </div>
+        </div>
+        
+        <div class="chat-input">
+            <input type="text" placeholder="Type a message..." id="messageInput" />
+            <label for="fileUpload" id="fileLabel">📁</label>
+            <input type="file" id="fileUpload" />
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+<script src="/script.js"></script>
+    <script>
+        // Function to send a message
+        function sendMessage() {
+            const chatInput = document.getElementById('messageInput'); // Message input field
+            const chatWindow = document.querySelector('.chat-window'); // Chat window container
+            const messageText = chatInput.value.trim(); // Get the input text and trim spaces
+
+            if (messageText) {
+                // Create a new message element
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message sent'; // Add appropriate class
+                messageElement.innerHTML = `<p>${messageText}</p><span>${new Date().toLocaleTimeString()}</span>`;
+
+                // Append the new message to the chat window
+                chatWindow.appendChild(messageElement);
+
+                // Scroll to the bottom of the chat window
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+
+                // Clear the input field
+                chatInput.value = '';
+            } else {
+                alert('Please enter a message before sending!');
+            }
+        }
+
+        // Function to send a file
+        function sendFile(event) {
+            const file = event.target.files[0]; // Get the selected file
+            const chatWindow = document.querySelector('.chat-window'); // Chat window container
+
+            if (file) {
+                const fileElement = document.createElement('div');
+                fileElement.className = 'message sent';
+
+                // Show file details
+                fileElement.innerHTML = `
+                    <p><strong>File:</strong> ${file.name}</p>
+                    <a href="${URL.createObjectURL(file)}" target="_blank" download="${file.name}">Download</a>
+                    <span>${new Date().toLocaleTimeString()}</span>
+                `;
+
+                // Append the new file message to the chat window
+                chatWindow.appendChild(fileElement);
+
+                // Scroll to the bottom of the chat window
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+
+                // Clear the file input for future uploads
+                event.target.value = '';
+            }
+        }
+
+        // Event listener for the Send button
+        document.getElementById('sendButton').addEventListener('click', function () {
+            sendMessage(); // Send text message
+        });
+
+        // Event listener for file upload
+        document.getElementById('fileUpload').addEventListener('change', sendFile);
+
+        // Allow pressing "Enter" to send a message
+        document.getElementById('messageInput').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
